@@ -6,33 +6,111 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		248FAD131D6C5207008BA12E /* CCFirebase-ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 240E1EA31D6C39AF00E85FE1 /* CCFirebase-ios.mm */; };
+		248FAD171D6C52EE008BA12E /* CCFirebase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 248FAD151D6C52EE008BA12E /* CCFirebase.cpp */; };
+		248FAD191D6C5480008BA12E /* CCFirebase.h in Headers */ = {isa = PBXBuildFile; fileRef = 240E1E9C1D6C339100E85FE1 /* CCFirebase.h */; };
+		248FAD1A1D6C549B008BA12E /* CCFirebase-ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 240E1EA21D6C398300E85FE1 /* CCFirebase-ios.h */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		240E1E9C1D6C339100E85FE1 /* CCFirebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCFirebase.h; path = ../Classes/CCFirebase.h; sourceTree = "<group>"; };
+		240E1EA21D6C398300E85FE1 /* CCFirebase-ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CCFirebase-ios.h"; path = "../Classes/ios/CCFirebase-ios.h"; sourceTree = "<group>"; };
+		240E1EA31D6C39AF00E85FE1 /* CCFirebase-ios.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "CCFirebase-ios.mm"; path = "../Classes/ios/CCFirebase-ios.mm"; sourceTree = "<group>"; };
+		240E1EA81D6C3B5900E85FE1 /* libCCFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCCFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		248FAD151D6C52EE008BA12E /* CCFirebase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCFirebase.cpp; path = ../Classes/CCFirebase.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		240E1EA51D6C3B5900E85FE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		240E1E911D6C333E00E85FE1 = {
 			isa = PBXGroup;
 			children = (
 				240E1E9B1D6C338000E85FE1 /* Classes */,
+				240E1EA91D6C3B5900E85FE1 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
 		240E1E9B1D6C338000E85FE1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				240E1EA01D6C38FB00E85FE1 /* ios */,
 				240E1E9C1D6C339100E85FE1 /* CCFirebase.h */,
+				248FAD151D6C52EE008BA12E /* CCFirebase.cpp */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
 		};
+		240E1EA01D6C38FB00E85FE1 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				240E1EA31D6C39AF00E85FE1 /* CCFirebase-ios.mm */,
+				240E1EA21D6C398300E85FE1 /* CCFirebase-ios.h */,
+			);
+			name = ios;
+			sourceTree = "<group>";
+		};
+		240E1EA91D6C3B5900E85FE1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				240E1EA81D6C3B5900E85FE1 /* libCCFirebase.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		240E1EB21D6C3C3400E85FE1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				248FAD1A1D6C549B008BA12E /* CCFirebase-ios.h in Headers */,
+				248FAD191D6C5480008BA12E /* CCFirebase.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		240E1EA71D6C3B5900E85FE1 /* CCFirebase */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 240E1EAF1D6C3B5900E85FE1 /* Build configuration list for PBXNativeTarget "CCFirebase" */;
+			buildPhases = (
+				240E1EA41D6C3B5900E85FE1 /* Sources */,
+				240E1EA51D6C3B5900E85FE1 /* Frameworks */,
+				240E1EB21D6C3C3400E85FE1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CCFirebase;
+			productName = CCFirebase;
+			productReference = 240E1EA81D6C3B5900E85FE1 /* libCCFirebase.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		240E1E921D6C333E00E85FE1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0730;
+				TargetAttributes = {
+					240E1EA71D6C3B5900E85FE1 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
 			};
 			buildConfigurationList = 240E1E951D6C333E00E85FE1 /* Build configuration list for PBXProject "CCFirebase" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -42,12 +120,26 @@
 				en,
 			);
 			mainGroup = 240E1E911D6C333E00E85FE1;
+			productRefGroup = 240E1EA91D6C3B5900E85FE1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				240E1EA71D6C3B5900E85FE1 /* CCFirebase */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		240E1EA41D6C3B5900E85FE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				248FAD171D6C52EE008BA12E /* CCFirebase.cpp in Sources */,
+				248FAD131D6C5207008BA12E /* CCFirebase-ios.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		240E1E961D6C333E00E85FE1 /* Debug */ = {
@@ -62,6 +154,96 @@
 			};
 			name = Release;
 		};
+		240E1EB01D6C3B5900E85FE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../Classes $(SRCROOT)/../../angel/cocos2d/cocos";
+			};
+			name = Debug;
+		};
+		240E1EB11D6C3B5900E85FE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../Classes $(SRCROOT)/../../angel/cocos2d/cocos";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -70,6 +252,15 @@
 			buildConfigurations = (
 				240E1E961D6C333E00E85FE1 /* Debug */,
 				240E1E971D6C333E00E85FE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		240E1EAF1D6C3B5900E85FE1 /* Build configuration list for PBXNativeTarget "CCFirebase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				240E1EB01D6C3B5900E85FE1 /* Debug */,
+				240E1EB11D6C3B5900E85FE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
