@@ -19,7 +19,7 @@ namespace oke_ya{
 
 class FirebaseIos : public Firebase
 {
-    virtual void showAds() const override;
+    virtual void usePushNotification() override;
 };
 
 }

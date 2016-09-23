@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 #include "CCFirebase-ios.h"
-
-#include "cocos2d.h"
-using namespace cocos2d;
+#include <iostream>
+#import <Firebase/Firebase.h>
+#import <UIKit/UIKit.h>
 
 namespace oke_ya{
     
@@ -24,15 +24,21 @@ Firebase* Firebase::getInstance()
         {
             delete s_sharedFirebase;
             s_sharedFirebase = nullptr;
-            CCLOG("ERROR: Could not init CCFirebaseIos");
         }
     }
     return s_sharedFirebase;
 }
 
-void FirebaseIos::showAds() const
+void FirebaseIos::usePushNotification()
 {
-    log("Firebase::showAds()");
+    UIUserNotificationType allNotificationTypes =
+    (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+    UIUserNotificationSettings *settings =
+    [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [FIRApp configure];
 }
 
 }
