@@ -41,4 +41,16 @@ void FirebaseIos::usePushNotification()
     [FIRApp configure];
 }
 
+void FirebaseIos::didReceiveRemoteNotification(void* ptr)
+{
+    auto userInfo = (__bridge NSDictionary*)ptr;
+    NSLog(@"%@", userInfo);
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(0)];
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.alertBody = userInfo[@"aps"][@"alert"];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
 }

@@ -20,6 +20,7 @@ namespace oke_ya{
 class FirebaseIos : public Firebase
 {
     virtual void usePushNotification() override;
+    void didReceiveRemoteNotification(void* userInfo) override;
 };
 
 }

@@ -9,7 +9,6 @@
 #ifndef CCFirebase_h
 #define CCFirebase_h
 
-
 namespace oke_ya{
 
 class Firebase
@@ -19,6 +18,7 @@ public:
     static Firebase* s_sharedFirebase;
     virtual void usePushNotification() = 0;
     virtual bool init();
+    virtual void didReceiveRemoteNotification(void* userInfo) = 0;
 };
 
 }
