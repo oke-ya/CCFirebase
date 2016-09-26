@@ -19,6 +19,9 @@ public:
     virtual void usePushNotification() = 0;
     virtual bool init();
     virtual void didReceiveRemoteNotification(void* userInfo) = 0;
+    virtual void showAdmobBanner() = 0;
+    virtual void hideAdmobBanner() = 0;
+
 };
 
 }

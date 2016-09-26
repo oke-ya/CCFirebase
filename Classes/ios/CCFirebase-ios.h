@@ -14,13 +14,21 @@
 #include <vector>
 
 #include "CCFirebase.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 namespace oke_ya{
 
 class FirebaseIos : public Firebase
 {
+public:
     virtual void usePushNotification() override;
     void didReceiveRemoteNotification(void* userInfo) override;
+    bool init() override;
+    void showAdmobBanner() override;
+    void hideAdmobBanner() override;
+private:
+    const std::string getAdmobDeviseId();
+    GADBannerView* _bannerView { nullptr };
 };
 
 }
