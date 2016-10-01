@@ -24,9 +24,22 @@ Firebase* Firebase::getInstance()
     return s_sharedFirebase;
 }
 
-void FirebaseAndroid::showAds() const
+void FirebaseAndroid::usePushNotification()
 {
-    JniHelper::callStaticVoidMethod(helperClassName, "showAds");
+}
+
+void FirebaseAndroid::didReceiveRemoteNotification(void* userInfo)
+{
+}
+
+void FirebaseAndroid::showAdmobBanner()
+{
+    JniHelper::callStaticVoidMethod(helperClassName, "showAdmobBanner");
+}
+
+void FirebaseAndroid::hideAdmobBanner()
+{
+    JniHelper::callStaticVoidMethod(helperClassName, "hideAdmobBanner");
 }
 
 }

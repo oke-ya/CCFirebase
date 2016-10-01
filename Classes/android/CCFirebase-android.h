@@ -19,7 +19,11 @@ namespace oke_ya{
 
 class FirebaseAndroid : public Firebase
 {
-    virtual void showAds() const override;
+public:
+    void usePushNotification() override;
+    void didReceiveRemoteNotification(void* userInfo) override;
+    void showAdmobBanner() override;
+    void hideAdmobBanner() override;
 };
 
 }

@@ -14,6 +14,7 @@ namespace oke_ya{
 class Firebase
 {
 public:
+    virtual ~Firebase() = default;
     static Firebase* getInstance();
     static Firebase* s_sharedFirebase;
     virtual void usePushNotification() = 0;
@@ -21,7 +22,6 @@ public:
     virtual void didReceiveRemoteNotification(void* userInfo) = 0;
     virtual void showAdmobBanner() = 0;
     virtual void hideAdmobBanner() = 0;
-
 };
 
 }
