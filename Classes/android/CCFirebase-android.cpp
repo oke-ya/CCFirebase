@@ -1,11 +1,11 @@
 #include "CCFirebase-android.h"
 #include "platform/android/jni/JniHelper.h"
 #include "cocos2d.h"
+#include <string>
 
 using namespace cocos2d;
 
 namespace oke_ya{
-
 
 static const std::string helperClassName = "com/oke_ya/ccfirebase/CCFirebase";
 
@@ -22,6 +22,19 @@ Firebase* Firebase::getInstance()
         }
     }
     return s_sharedFirebase;
+}
+
+void FirebaseAndroid::admobInit(const std::string& admobId)
+{
+    JniMethodInfo methodInfo;
+    if(JniHelper::getStaticMethodInfo(methodInfo, helperClassName.c_str(), "admobInit", "(Ljava/lang/String;)V"))
+    {
+        JNIEnv* env = JniHelper::getEnv();
+        jstring admobIdJ = env->NewStringUTF(admobId.c_str());
+        methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, admobIdJ);
+        methodInfo.env->DeleteLocalRef(methodInfo.classID);
+        env->DeleteLocalRef(admobIdJ);
+    }
 }
 
 void FirebaseAndroid::usePushNotification()
