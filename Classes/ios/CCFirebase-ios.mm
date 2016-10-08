@@ -37,6 +37,11 @@ bool FirebaseIos::init()
     return true;
 }
 
+void FirebaseIos::admobInit(const std::string& admobId)
+{
+    _admobId = admobId;
+}
+
 void FirebaseIos::usePushNotification()
 {
     UIUserNotificationType allNotificationTypes =
@@ -63,7 +68,7 @@ void FirebaseIos::didReceiveRemoteNotification(void* ptr)
 void FirebaseIos::showAdmobBanner()
 {
     _bannerView = [[GADBannerView alloc]initWithAdSize:kGADAdSizeSmartBannerPortrait];
-    _bannerView.adUnitID = [NSString stringWithUTF8String: ADMOB_ID.c_str()];;
+    _bannerView.adUnitID = [NSString stringWithUTF8String: _admobId.c_str()];;
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     if (window == nil) {
         window = [[UIApplication sharedApplication].windows objectAtIndex:0];
