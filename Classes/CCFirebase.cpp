@@ -17,8 +17,4 @@ bool Firebase::init()
     return true;
 }
 
-void Firebase::admobInit(const std::string& admobId)
-{
-}
-
 }
