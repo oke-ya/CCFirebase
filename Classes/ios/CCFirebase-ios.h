@@ -26,7 +26,7 @@ public:
     bool init() override;
     void showAdmobBanner() override;
     void hideAdmobBanner() override;
-    void admobInit(const std::string& admobId) override;
+    void FirebaseIos::admobInit(const std::string& admobId) override;
 private:
     std::string _admobId;
     const std::string getAdmobDeviseId();
