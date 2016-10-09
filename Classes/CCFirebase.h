@@ -16,6 +16,7 @@ namespace oke_ya{
 class Firebase
 {
 public:
+    static constexpr auto VERSION = "0.5.0";
     virtual ~Firebase() = default;
     static Firebase* getInstance();
     static Firebase* s_sharedFirebase;
