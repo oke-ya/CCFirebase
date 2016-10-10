@@ -120,7 +120,8 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../Vendor/CCFirebase/Classes
 bool AppDelegate::applicationDidFinishLaunching() {
     auto firebase = Firebase::getInstance();
     firebase->usePushNotification();
-    firebase->admobInit("YOUR_ADMOB_ID");
+    firebase->setAdmobBannerId("YOUR_ADMOB_BANNER_ADS_ID");
+    firebase->setAdmobInterstitialId("YOUR_ADMOB_INTERSTITIAL_ADS_ID");
 ....
 ```
 
@@ -133,4 +134,5 @@ bool AppDelegate::applicationDidFinishLaunching() {
 bool HelloWorld::init()
 {
    oke_ya::Firebase::getInstance()->showAdmobBanner();
+   //oke_ya::Firebase::getInstance()->showAdmobInterstitial();
 ```
