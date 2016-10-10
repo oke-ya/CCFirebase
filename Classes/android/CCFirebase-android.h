@@ -22,9 +22,12 @@ class FirebaseAndroid : public Firebase
 public:
     void usePushNotification() override;
     void didReceiveRemoteNotification(void* userInfo) override;
-    void admobInit(const std::string& admobId) override;
+    void setAdmobBannerId(const std::string& admobBannerId) override;
+    void setAdmobInterstitialId(const std::string& admobInterstitialId) override;
     void showAdmobBanner() override;
     void hideAdmobBanner() override;
+    void showAdmobInterstitial() override;
+    bool isInterstitialLoaded() override;
 private:
     bool _init { false };
 };

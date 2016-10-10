@@ -15,24 +15,48 @@ import android.widget.FrameLayout;
 
 public class CCFirebase {
     private static final String TAG = CCFirebase.class.getSimpleName();
-    private static AdView adView;
-    private static String admobId;
+    private static AdView mBannerAdView;
+    private static String mAdmobBannerId;
+    private static InterstitialAd mInterstitialAd;
+    private static String mAdmobInterstitialId;
+    private static boolean mInterstitialLoaded = false;
 
-    public static void admobInit(String _admobId) {
-        admobId = _admobId;
+    public static void setAdmobBannerId(String admobBannerId) {
+        mAdmobBannerId = admobBannerId;
         Cocos2dxHelper.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 Cocos2dxActivity activity = (Cocos2dxActivity)Cocos2dxHelper.getActivity();
-                adView = new AdView(activity);
-                Log.d(CCFirebase.TAG, "Admob: " + admobId);
-                adView.setAdUnitId(admobId);
-                adView.setAdSize(AdSize.SMART_BANNER);
+                mBannerAdView = new AdView(activity);
+                Log.d(CCFirebase.TAG, "Admob: " + mAdmobBannerId);
+                mBannerAdView.setAdUnitId(mAdmobBannerId);
+                mBannerAdView.setAdSize(AdSize.SMART_BANNER);
                 FrameLayout.LayoutParams adParams = new FrameLayout.LayoutParams(
                                                                                  FrameLayout.LayoutParams.WRAP_CONTENT,
                                                                                  FrameLayout.LayoutParams.WRAP_CONTENT);
                 adParams.gravity = (Gravity.BOTTOM | Gravity.CENTER);
-                activity.addContentView(adView, adParams);
+                activity.addContentView(mBannerAdView, adParams);
+            }
+        });
+    }
+
+    public static void setAdmobInterstitialId(String admobInterstitialId) {
+        mAdmobInterstitialId = admobInterstitialId;
+        Cocos2dxHelper.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Activity activity = Cocos2dxHelper.getActivity();
+                mInterstitialAd = new InterstitialAd(activity);
+                mInterstitialAd.setAdUnitId(mAdmobInterstitialId);
+                mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdClosed() {
+                            mInterstitialLoaded = false;
+                            mInterstitialAd.loadAd(createAdRequest());
+                        }
+                });
+                mInterstitialLoaded = false;
+                mInterstitialAd.loadAd(createAdRequest());
             }
         });
     }
@@ -41,10 +65,8 @@ public class CCFirebase {
         Cocos2dxHelper.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                adView.setVisibility(View.VISIBLE);
-                adView.loadAd(new AdRequest.Builder()
-                              .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                              .addTestDevice("498CD77074D1A8BCAE37E8DBD006A0B7").build());
+                mBannerAdView.setVisibility(View.VISIBLE);
+                mBannerAdView.loadAd(createAdRequest());
             }
        });
     }
@@ -53,8 +75,35 @@ public class CCFirebase {
         Cocos2dxHelper.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                adView.setVisibility(View.GONE);
+                mBannerAdView.setVisibility(View.GONE);
             }
         });
+    }
+
+    public static boolean isInterstitialLoaded() {
+        Cocos2dxHelper.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                 mInterstitialLoaded = mInterstitialAd.isLoaded();
+            }
+        });
+        return mInterstitialLoaded;
+    }
+
+    public static void showAdmobInterstitial() {
+        Cocos2dxHelper.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(mInterstitialAd.isLoaded()){
+                    mInterstitialAd.show();
+                }
+            }
+        });
+    }
+
+    private static AdRequest createAdRequest() {
+        return new AdRequest.Builder()
+            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            .addTestDevice("498CD77074D1A8BCAE37E8DBD006A0B7").build();
     }
 }

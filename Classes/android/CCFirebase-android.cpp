@@ -24,16 +24,29 @@ Firebase* Firebase::getInstance()
     return s_sharedFirebase;
 }
 
-void FirebaseAndroid::admobInit(const std::string& admobId)
+void FirebaseAndroid::setAdmobBannerId(const std::string& admobBannerId)
 {
     JniMethodInfo methodInfo;
-    if(JniHelper::getStaticMethodInfo(methodInfo, helperClassName.c_str(), "admobInit", "(Ljava/lang/String;)V"))
+    if(JniHelper::getStaticMethodInfo(methodInfo, helperClassName.c_str(), "setAdmobBannerId", "(Ljava/lang/String;)V"))
     {
         JNIEnv* env = JniHelper::getEnv();
-        jstring admobIdJ = env->NewStringUTF(admobId.c_str());
-        methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, admobIdJ);
+        jstring admobBannerIdJ = env->NewStringUTF(admobBannerId.c_str());
+        methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, admobBannerIdJ);
         methodInfo.env->DeleteLocalRef(methodInfo.classID);
-        env->DeleteLocalRef(admobIdJ);
+        env->DeleteLocalRef(admobBannerIdJ);
+    }
+}
+
+void FirebaseAndroid::setAdmobInterstitialId(const std::string& admobInterstitialId)
+{
+    JniMethodInfo methodInfo;
+    if(JniHelper::getStaticMethodInfo(methodInfo, helperClassName.c_str(), "setAdmobInterstitialId", "(Ljava/lang/String;)V"))
+    {
+        JNIEnv* env = JniHelper::getEnv();
+        jstring admobInterstitialIdJ = env->NewStringUTF(admobInterstitialId.c_str());
+        methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, admobInterstitialIdJ);
+        methodInfo.env->DeleteLocalRef(methodInfo.classID);
+        env->DeleteLocalRef(admobInterstitialIdJ);
     }
 }
 
@@ -55,4 +68,21 @@ void FirebaseAndroid::hideAdmobBanner()
     JniHelper::callStaticVoidMethod(helperClassName, "hideAdmobBanner");
 }
 
+void FirebaseAndroid::showAdmobInterstitial()
+{
+    JniHelper::callStaticVoidMethod(helperClassName, "showAdmobInterstitial");
+}
+
+bool FirebaseAndroid::isInterstitialLoaded()
+{
+    JniMethodInfo methodInfo;
+    if(JniHelper::getStaticMethodInfo(methodInfo, helperClassName.c_str(), "isInterstitialLoaded", "()Z"))
+    {
+        JNIEnv* env = JniHelper::getEnv();
+        jboolean jbool = methodInfo.env->CallBooleanMethod(methodInfo.classID, methodInfo.methodID);
+        methodInfo.env->DeleteLocalRef(methodInfo.classID);
+        bool b = (jbool == JNI_TRUE);
+        return b;
+    }
+}
 }
