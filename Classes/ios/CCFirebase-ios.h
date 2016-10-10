@@ -26,9 +26,16 @@ public:
     bool init() override;
     void showAdmobBanner() override;
     void hideAdmobBanner() override;
-    void FirebaseIos::admobInit(const std::string& admobId) override;
+    void setAdmobBannerId(const std::string& admobBannerId) override;
+    void setAdmobInterstitialId(const std::string& admobInterstitialId) override;
+    void showAdmobInterstitial() override;
+    bool isInterstitialLoaded() override;
 private:
-    std::string _admobId;
+    UIViewController* getRootViewController();
+    void setTestDevise(GADRequest* request);
+    GADInterstitial* _interstitial;
+    std::string _admobBannerId;
+    std::string _admobInterstitialId;
     const std::string getAdmobDeviseId();
     GADBannerView* _bannerView { nullptr };
 };

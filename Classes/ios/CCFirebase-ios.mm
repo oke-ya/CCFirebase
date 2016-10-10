@@ -37,11 +37,20 @@ bool FirebaseIos::init()
     return true;
 }
 
-void FirebaseIos::admobInit(const std::string& admobId)
+void FirebaseIos::setAdmobBannerId(const std::string& admobBannerId)
 {
-    _admobId = admobId;
+    _admobBannerId = admobBannerId;
 }
 
+void FirebaseIos::setAdmobInterstitialId(const std::string& admobInterstitialId)
+{
+    _admobInterstitialId = admobInterstitialId;
+    _interstitial = [[GADInterstitial alloc] initWithAdUnitID:[NSString stringWithUTF8String: _admobInterstitialId.c_str()]];
+    GADRequest *request = [GADRequest request];
+    setTestDevise(request);
+    [_interstitial loadRequest:request];
+}
+    
 void FirebaseIos::usePushNotification()
 {
     UIUserNotificationType allNotificationTypes =
@@ -68,24 +77,25 @@ void FirebaseIos::didReceiveRemoteNotification(void* ptr)
 void FirebaseIos::showAdmobBanner()
 {
     _bannerView = [[GADBannerView alloc]initWithAdSize:kGADAdSizeSmartBannerPortrait];
-    _bannerView.adUnitID = [NSString stringWithUTF8String: _admobId.c_str()];;
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    if (window == nil) {
-        window = [[UIApplication sharedApplication].windows objectAtIndex:0];
-    }
-    UIViewController *viewController = window.rootViewController;
+    _bannerView.adUnitID = [NSString stringWithUTF8String: _admobBannerId.c_str()];;
+    auto viewController = getRootViewController();
     _bannerView.rootViewController = viewController;
     [viewController.view addSubview:_bannerView];
     //画面下に配置
     _bannerView.center = CGPointMake(viewController.view.center.x,
                                          viewController.view.frame.size.height - _bannerView.frame.size.height/2);
     GADRequest *request = [GADRequest request];
+    setTestDevise(request);
+    [_bannerView loadRequest:request];
+}
+
+void FirebaseIos::setTestDevise(GADRequest* request)
+{
 #if TARGET_IPHONE_SIMULATOR
     request.testDevices = @[ kGADSimulatorID ];
 #elif COCOS2D_DEBUG
     request.testDevices = @[ [NSString stringWithUTF8String: getAdmobDeviseId().c_str()] ];
 #endif
-    [_bannerView loadRequest:request];
 }
 
 void FirebaseIos::hideAdmobBanner()
@@ -108,6 +118,30 @@ const std::string FirebaseIos::getAdmobDeviseId()
     }
     std::string str = [output UTF8String];
     return str;
+}
+
+void FirebaseIos::showAdmobInterstitial()
+{
+    if (isInterstitialLoaded()) {
+        auto viewController = getRootViewController();
+        [_interstitial presentFromRootViewController:viewController];
+        setAdmobInterstitialId(_admobInterstitialId);
+    }
+}
+    
+bool FirebaseIos::isInterstitialLoaded()
+{
+    return [_interstitial isReady];
+}
+    
+UIViewController* FirebaseIos::getRootViewController()
+{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    if (window == nil) {
+        window = [[UIApplication sharedApplication].windows objectAtIndex:0];
+    }
+    UIViewController *viewController = window.rootViewController;
+    return viewController;
 }
 
 }
