@@ -60,6 +60,8 @@ Add Vendor/CCFirebase/proj.ios/CCFirebase.xcodeproj
 
 ## Settings for Android
 
+You must update your 'Google Repository'.
+
 ### Download Firebase settings
 
 on `proj.android-studio/app/google-services.json`
@@ -89,9 +91,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':libcocos2dx')
     compile project(':firebase')
-    compile 'com.google.firebase:firebase-core:9.4.0'
-    compile 'com.google.firebase:firebase-messaging:9.4.0'
-    compile 'com.google.firebase:firebase-ads:9.4.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
