@@ -60,6 +60,8 @@ Add Vendor/CCFirebase/proj.ios/CCFirebase.xcodeproj
 
 ## Settings for Android
 
+You must update your 'Google Repository'.
+
 ### Download Firebase settings
 
 on `proj.android-studio/app/google-services.json`
