@@ -30,6 +30,9 @@ public:
     void setAdmobInterstitialId(const std::string& admobInterstitialId) override;
     void showAdmobInterstitial() override;
     bool isInterstitialLoaded() override;
+    bool requestRewardVideo(const std::string& admobVideoId) override;
+    void showAdmobVideo() override;
+    bool isAdmobVideoReady() override;
 private:
     UIViewController* getRootViewController();
     void setTestDevise(GADRequest* request);

@@ -14,6 +14,53 @@
 #import <Firebase/Firebase.h>
 #include <CommonCrypto/CommonDigest.h>
 #import <AdSupport/ASIdentifierManager.h>
+#import <ChartboostAdapter/ChartboostAdapter.h>
+
+@interface FirebaseDelegateBridge : NSObject<GADRewardBasedVideoAdDelegate>
+@end
+
+@implementation FirebaseDelegateBridge
+
+#pragma mark - Rewarded Video Delegate Methods
+
+- (void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+   didRewardUserWithReward:(GADAdReward *)reward {
+    NSString *rewardMessage =
+    [NSString stringWithFormat:@"Reward received with currency %@ , amount %lf",
+     reward.type,
+     [reward.amount doubleValue]];
+    NSLog(rewardMessage);
+}
+
+- (void)rewardBasedVideoAdDidReceiveAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    oke_ya::Firebase::getInstance()->callideoAdDidReceiveAdCallback();
+    NSLog(@"Reward based video ad is received.");
+}
+
+- (void)rewardBasedVideoAdDidOpen:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    NSLog(@"Opened reward based video ad.");
+}
+
+- (void)rewardBasedVideoAdDidStartPlaying:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    NSLog(@"Reward based video ad started playing.");
+}
+
+- (void)rewardBasedVideoAdDidClose:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    NSLog(@"Reward based video ad is closed.");
+}
+
+- (void)rewardBasedVideoAdWillLeaveApplication:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    NSLog(@"Reward based video ad will leave application.");
+}
+
+- (void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+    didFailToLoadWithError:(NSError *)error {
+    NSLog(@"Reward based video ad failed to load.");
+}
+@end
+
+
+static FirebaseDelegateBridge* s_pDelegateBridge = nil;
 
 namespace oke_ya{
 
@@ -27,6 +74,7 @@ Firebase* Firebase::getInstance()
             delete s_sharedFirebase;
             s_sharedFirebase = nullptr;
         }
+        s_pDelegateBridge = [[FirebaseDelegateBridge alloc] init];
     }
     return s_sharedFirebase;
 }
@@ -91,11 +139,11 @@ void FirebaseIos::showAdmobBanner()
 
 void FirebaseIos::setTestDevise(GADRequest* request)
 {
-#if TARGET_IPHONE_SIMULATOR
-    request.testDevices = @[ kGADSimulatorID ];
-#elif COCOS2D_DEBUG
-    request.testDevices = @[ [NSString stringWithUTF8String: getAdmobDeviseId().c_str()] ];
-#endif
+//#if TARGET_IPHONE_SIMULATOR
+//    request.testDevices = @[ kGADSimulatorID ];
+//#elif COCOS2D_DEBUG
+//    request.testDevices = @[ [NSString stringWithUTF8String: getAdmobDeviseId().c_str()] ];
+//#endif
 }
 
 void FirebaseIos::hideAdmobBanner()
@@ -142,6 +190,32 @@ UIViewController* FirebaseIos::getRootViewController()
     }
     UIViewController *viewController = window.rootViewController;
     return viewController;
+}
+    
+bool FirebaseIos::requestRewardVideo(const std::string& admobVideoId)
+{
+    [GADRewardBasedVideoAd sharedInstance].delegate = s_pDelegateBridge;
+    GADRequest *request = [GADRequest request];
+    [[GADRewardBasedVideoAd sharedInstance] loadRequest:request
+                                           withAdUnitID:[NSString stringWithUTF8String: admobVideoId.c_str()]];
+    GADMChartboostExtras *cbExtras = [[GADMChartboostExtras alloc] init];
+    cbExtras.framework = CBFrameworkUnity;
+//    cbExtras.frameworkVersion = @"4.2.0";
+    [request registerAdNetworkExtras:cbExtras];
+
+    return true;
+}
+
+void FirebaseIos::showAdmobVideo()
+{
+    if (isAdmobVideoReady()) {
+        [[GADRewardBasedVideoAd sharedInstance] presentFromRootViewController:getRootViewController()];
+    }
+}
+
+bool FirebaseIos::isAdmobVideoReady()
+{
+    return [[GADRewardBasedVideoAd sharedInstance] isReady];
 }
 
 }

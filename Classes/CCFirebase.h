@@ -10,6 +10,8 @@
 #define CCFirebase_h
 
 #include <string>
+#include <functional>
+#include <iostream>
 
 namespace oke_ya{
 
@@ -17,6 +19,7 @@ class Firebase
 {
 public:
     static constexpr auto VERSION = "0.5.1";
+    using callback = std::function<void(void)>;
     virtual ~Firebase() = default;
     static Firebase* getInstance();
     static Firebase* s_sharedFirebase;
@@ -29,6 +32,13 @@ public:
     virtual void hideAdmobBanner() = 0;
     virtual void showAdmobInterstitial() = 0;
     virtual bool isInterstitialLoaded() = 0;
+    virtual bool requestRewardVideo(const std::string& admobVideoId) = 0;
+    virtual void showAdmobVideo() = 0;
+    virtual bool isAdmobVideoReady() = 0;
+    void callideoAdDidReceiveAdCallback() { _videoAdDidReceiveAdCallback(); }
+    void setCallideoAdDidReceiveAdCallback(callback fn) { _videoAdDidReceiveAdCallback = fn; }
+protected:
+    callback _videoAdDidReceiveAdCallback { [](){ std::cout << "_videoAdDidReceiveAdCallback"; } };
 };
 
 }

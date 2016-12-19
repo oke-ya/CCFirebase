@@ -11,6 +11,9 @@
 		248FAD171D6C52EE008BA12E /* CCFirebase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 248FAD151D6C52EE008BA12E /* CCFirebase.cpp */; };
 		248FAD191D6C5480008BA12E /* CCFirebase.h in Headers */ = {isa = PBXBuildFile; fileRef = 240E1E9C1D6C339100E85FE1 /* CCFirebase.h */; };
 		248FAD1A1D6C549B008BA12E /* CCFirebase-ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 240E1EA21D6C398300E85FE1 /* CCFirebase-ios.h */; };
+		24E350EA1E06A19B00C94872 /* ChartboostAdapter in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E350E91E06A19B00C94872 /* ChartboostAdapter */; };
+		24E350EC1E07F38400C94872 /* libAdapterUnity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E350EB1E07F38400C94872 /* libAdapterUnity.a */; };
+		24FD0E531E0696550063EB99 /* ChartboostAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24FD0E521E0696550063EB99 /* ChartboostAdapter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		240E1EA31D6C39AF00E85FE1 /* CCFirebase-ios.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "CCFirebase-ios.mm"; path = "../Classes/ios/CCFirebase-ios.mm"; sourceTree = "<group>"; };
 		240E1EA81D6C3B5900E85FE1 /* libCCFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCCFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		248FAD151D6C52EE008BA12E /* CCFirebase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCFirebase.cpp; path = ../Classes/CCFirebase.cpp; sourceTree = "<group>"; };
+		24E350E91E06A19B00C94872 /* ChartboostAdapter */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = ChartboostAdapter; path = "../Vendor/ChartboostAdapter-6.5.2.1/ChartboostAdapter.framework/Versions/A/ChartboostAdapter"; sourceTree = "<group>"; };
+		24E350EB1E07F38400C94872 /* libAdapterUnity.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAdapterUnity.a; path = "../Vendor/LibAdapterUnity-2.0.4.0/libAdapterUnity.a"; sourceTree = "<group>"; };
+		24FD0E521E0696550063EB99 /* ChartboostAdapter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChartboostAdapter.framework; path = "../Vendor/ChartboostAdapter-6.5.2.1/ChartboostAdapter.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +32,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24E350EC1E07F38400C94872 /* libAdapterUnity.a in Frameworks */,
+				24FD0E531E0696550063EB99 /* ChartboostAdapter.framework in Frameworks */,
+				24E350EA1E06A19B00C94872 /* ChartboostAdapter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,6 +44,9 @@
 		240E1E911D6C333E00E85FE1 = {
 			isa = PBXGroup;
 			children = (
+				24E350EB1E07F38400C94872 /* libAdapterUnity.a */,
+				24E350E91E06A19B00C94872 /* ChartboostAdapter */,
+				24FD0E521E0696550063EB99 /* ChartboostAdapter.framework */,
 				240E1E9B1D6C338000E85FE1 /* Classes */,
 				240E1EA91D6C3B5900E85FE1 /* Products */,
 			);
@@ -166,6 +178,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -185,15 +198,12 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Vendor/ChartboostAdapter-6.5.2.1/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -203,8 +213,15 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../proj.ios_mac/Pods/Headers/Public/Google-Mobile-Ads-SDK",
 					"$(SRCROOT)/../../../Classes",
+					"$(SRCROOT)/../../../proj.ios_mac/Pods/Headers/Public/FirebaseCore",
+					"$(SRCROOT)/../Vendor/ChartboostAdapter-6.5.2.1/ChartboostAdapter.framework/Headers",
+					"$(SRCROOT)/../../../proj.ios_mac/Pods/Headers/Public/ChartboostSDK",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/../Vendor/ChartboostAdapter-6.5.2.1/**",
+					"$(SRCROOT)/../Vendor/LibAdapterUnity-2.0.4.0/**",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -219,6 +236,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -238,9 +256,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Vendor/ChartboostAdapter-6.5.2.1/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -250,8 +270,15 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../proj.ios_mac/Pods/Headers/Public/Google-Mobile-Ads-SDK",
 					"$(SRCROOT)/../../../Classes",
+					"$(SRCROOT)/../../../proj.ios_mac/Pods/Headers/Public/FirebaseCore",
+					"$(SRCROOT)/../Vendor/ChartboostAdapter-6.5.2.1/ChartboostAdapter.framework/Headers",
+					"$(SRCROOT)/../../../proj.ios_mac/Pods/Headers/Public/ChartboostSDK",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/../Vendor/ChartboostAdapter-6.5.2.1/**",
+					"$(SRCROOT)/../Vendor/LibAdapterUnity-2.0.4.0/**",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

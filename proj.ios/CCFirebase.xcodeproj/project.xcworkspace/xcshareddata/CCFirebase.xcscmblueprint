@@ -4,27 +4,27 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "93EB17165C83A03219B57CCFD05B3CD33C1E8CF0" : 0,
-    "846709FE600358BCE881538A58252993EF1CABA8" : 0
+    "846709FE600358BCE881538A58252993EF1CABA8" : 0,
+    "80633F08DE071FEFA6D02F087DFC337AC6316998" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7FC8476D-5708-40FF-827B-2589057429FC",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "93EB17165C83A03219B57CCFD05B3CD33C1E8CF0" : "..",
-    "846709FE600358BCE881538A58252993EF1CABA8" : "CCFirebase\/"
+    "846709FE600358BCE881538A58252993EF1CABA8" : "CCFirebase\/",
+    "80633F08DE071FEFA6D02F087DFC337AC6316998" : ".."
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "CCFirebase",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "proj.ios\/CCFirebase.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:yalab\/angel.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "80633F08DE071FEFA6D02F087DFC337AC6316998"
+    },
+    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:oke-ya\/CCFirebase.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "846709FE600358BCE881538A58252993EF1CABA8"
-    },
-    {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:yalab\/angel.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "93EB17165C83A03219B57CCFD05B3CD33C1E8CF0"
     }
   ]
 }
